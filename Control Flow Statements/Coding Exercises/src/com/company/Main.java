@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(isPerfectNumber(6));
+        numberToWords(10);
     }
     // Coding Exercise: Number in Word
     public static void printNumberInWord(int number) {
@@ -229,7 +229,89 @@ public class Main {
         System.out.println(number);
         return false;
     }
+    //Coding Exercise: Number To Words
 
+    public static void numberToWords(int number) {
+        if(number < 0) {
+            System.out.println("Invalid Value");
+        } else {
+            if (number == 0) {
+                System.out.println("Zero");
+            }
+            number = reverse(number);
+            while(number >= 1) {
+
+                switch(number % 10) {
+                    case 0:
+                        System.out.println("Zero");
+                        break;
+                    case 1:
+                        System.out.println("One");
+                        break;
+                    case 2:
+                        System.out.println("Two");
+                        break;
+                    case 3:
+                        System.out.println("Three");
+                        break;
+                    case 4:
+                        System.out.println("Four");
+                        break;
+                    case 5:
+                        System.out.println("Five");
+                        break;
+                    case 6:
+                        System.out.println("Six");
+                        break;
+                    case 7:
+                        System.out.println("Seven");
+                        break;
+                    case 8:
+                        System.out.println("Eight");
+                        break;
+                    case 9:
+                        System.out.println("Nine");
+                        break;
+                    default:
+                        System.out.println("Error");
+                }
+                number = number / 10;
+            }
+        }
+    }
+
+    public static int reverse(int num) {
+        boolean negative = false;
+        if(num < 0) {
+            negative = true;
+        }
+        num = Math.abs(num);
+        int numR = 0;
+        int places = getDigitCount(num) - 1;
+        while(places >= 0) {
+            numR = ((num % 10) * ((int) Math.pow(10, places))) + numR;
+            places = places - 1;
+            num = num / 10;
+        }
+        if(negative) {
+            return numR * -1;
+        } else {
+            return numR;
+        }
+
+    }
+
+    public static int getDigitCount(int number) {
+        if(number < 0) {
+            return -1;
+        }
+        int places = 1;
+        while(number >= 10) {
+            places = places + 1;
+            number = number / 10;
+        }
+        return places;
+    }
 
 
 }
