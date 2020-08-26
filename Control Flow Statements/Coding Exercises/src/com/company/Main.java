@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(sumFirstAndLastDigit(12247));
+        System.out.println(isPerfectNumber(6));
     }
     // Coding Exercise: Number in Word
     public static void printNumberInWord(int number) {
@@ -126,9 +126,109 @@ public class Main {
         }
         return first + last;
     }
+    //Coding Exercise: Even Digit Sum
+    public static int giveEvenDigitSum(int number) {
+        if(number < 0) {
+            return -1;
+        }
+        int sum = 0;
+        while(number >= 1) {
+            if((number % 10) % 2 == 0) {
+                sum = sum + (number % 10);
+            }
+            number = number / 10;
+        }
+        return sum;
+    }
 
+    //Coding Exercise: Shared Digit
+    public static boolean hasSharedDigit(int num1, int num2) {
+        if(num1 < 10 || num1 > 99 || num2 < 10 || num2 > 99) {
+            return false;
+        }
+        int num2Memory = num2;
+        while(num1 >= 1) {
+            num2 = num2Memory;
+            while(num2 >= 1) {
+                System.out.println(num1 % 10);
+                System.out.println(num2 % 10);
+                if(num1 % 10 == num2 % 10) {
+                    return true;
+                }
+                num2 = num2 / 10;
+            }
+            num1 = num1 / 10;
+        }
+        return false;
+    }
 
+    //Coding Exercise: Last Digit Checker
+    public static boolean hasSameLastDigit(int num1, int num2, int num3) {
+        if(isValid(num1) && isValid(num2) && isValid(num3)) {
+            return ((num1 % 10 == num2 % 10) || (num1 % 10 == num3 % 10) || (num2 % 10 == num3 % 10));
+        }
+        return false;
+    }
 
+    public static boolean isValid(int num) {
+        if(num >= 10 && num <= 1000) {
+            return true;
+        }
+        return false;
+    }
+
+    //Coding Exercise: Greatest Common Divisor
+    public static int getGreatestCommonDivisor(int first, int second) {
+        if(first < 10 || second < 10) {
+            return -1;
+        }
+        int gcd = 0;
+        if(first > second) {
+            for(int i = 1; i <= second; i++) {
+                if((first % i == 0) && (second % i == 0)) {
+                    gcd = i;
+                }
+            }
+        } else {
+            for(int i = 1; i <= first; i++) {
+                if((first % i == 0) && (second % i == 0)) {
+                    gcd = i;
+                }
+            }
+        }
+        return gcd;
+    }
+
+    //Coding Exercise: All Factors
+    public static void printFactors(int number) {
+        if(number < 1) {
+            System.out.println("Invalid Value");
+        }
+        for(int i = 1; i <= number; i++) {
+            if(number % i == 0) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    //Coding Exercise: Perfect Number
+    public static boolean isPerfectNumber(int number) {
+        if(number < 1) {
+            return false;
+        }
+        int factorSum = 0;
+        for(int i = 1; i < number; i++) {
+            if(number % i == 0) {
+                factorSum = factorSum + i;
+            }
+        }
+        if(factorSum == number) {
+            return true;
+        }
+        System.out.println(factorSum);
+        System.out.println(number);
+        return false;
+    }
 
 
 
