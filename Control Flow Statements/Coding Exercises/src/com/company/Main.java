@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        numberToWords(10);
+        numberToWords(100);
     }
     // Coding Exercise: Number in Word
     public static void printNumberInWord(int number) {
@@ -238,7 +238,10 @@ public class Main {
             if (number == 0) {
                 System.out.println("Zero");
             }
+            int length = getDigitCount(number);
             number = reverse(number);
+            int lengthR = getDigitCount(number);
+
             while(number >= 1) {
 
                 switch(number % 10) {
@@ -276,6 +279,9 @@ public class Main {
                         System.out.println("Error");
                 }
                 number = number / 10;
+            }
+            for(int i = length - lengthR; i > 0; i--) {
+                System.out.println("Zero");
             }
         }
     }
