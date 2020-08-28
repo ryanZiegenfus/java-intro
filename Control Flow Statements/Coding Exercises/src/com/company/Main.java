@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        numberToWords(10);
+        printSquareStar(8);
     }
     // Coding Exercise: Number in Word
     public static void printNumberInWord(int number) {
@@ -238,7 +238,10 @@ public class Main {
             if (number == 0) {
                 System.out.println("Zero");
             }
+            int length = getDigitCount(number);
             number = reverse(number);
+            int lengthR = getDigitCount(number);
+
             while(number >= 1) {
 
                 switch(number % 10) {
@@ -277,6 +280,9 @@ public class Main {
                 }
                 number = number / 10;
             }
+            for(int i = length - lengthR; i > 0; i--) {
+                System.out.println("Zero");
+            }
         }
     }
 
@@ -313,5 +319,73 @@ public class Main {
         return places;
     }
 
+    //Coding Exercise: Flour Pack Problem
+    public static boolean canPack(int bigCount, int smallCount, int goal) {
+        if (bigCount < 0 || smallCount < 0 || goal < 0 || ((bigCount * 5) + smallCount) < goal) {
+            return false;
+        }
+        if (goal < 5 || goal < smallCount) {
+            return (smallCount >= goal);
+        }
+        int level = 0;
+        while ((goal - level >= 5) && bigCount > 0) {
+            level += 5;
+            bigCount--;
+        }
+        return (smallCount >= (goal - level));
+    }
+
+    //Coding Exercise: Flour Pack Problem
+
+    public static int getLargestPrime(int number) {
+        int highest = -1;
+        boolean isPrime;
+        if(number <= 0) {
+            return -1;
+        }
+        if(number % 2 == 0){
+            highest = 2;
+        }
+        for(int i = 3; i <= number; i += 2) {
+            isPrime = true;
+            if((number % i == 0) && (i % 2 != 0)) {
+                for(int j = 1; j <= i / 2; j += 2) {
+                    if(i % j == 0 && !(j == 1 || j == i)) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if(isPrime) {
+                    highest = i;
+                }
+            }
+        }
+        return highest;
+    }
+
+    //Coding Exercise: Diagonal Star
+    public static void printSquareStar(int number) {
+        if(number < 5){
+            System.out.println("Invalid Value");
+        } else{
+            String row = "";
+            for(int i = 1; i <= number; i++) {
+                row = "";
+                for(int j = 1; j <= number; j++) {
+                    if(i == 1 || i == number) {
+                        row += "*";
+                    } else {
+                        if((i == j) || (j == (number - i + 1)) || j == 1 || j == number) {
+                            row += "*";
+                        } else {
+                            row += " ";
+                        }
+                    }
+                }
+                System.out.println(row);
+            }
+        }
+
+    }
 
 }
