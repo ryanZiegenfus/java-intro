@@ -1,11 +1,12 @@
 package com.company;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        lesson();
+        challenge();
     }
 
     public static void lesson() {
@@ -32,6 +33,19 @@ public class Main {
     }
 
     public static void challenge() {
-        
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Enter number #" + i);
+            boolean hasNextInt = scanner.hasNextInt();
+            if(hasNextInt) {
+                sum += scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                System.out.println("Invalid Input");
+            }
+        }
+        System.out.println("Sum = " + sum);
+        scanner.close();
     }
 }
