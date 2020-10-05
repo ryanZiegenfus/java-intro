@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	inputThenPrintSumAndAverage();
     }
 
     public static void inputThenPrintSumAndAverage() {
@@ -13,9 +13,25 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         int sum = 0;
-        int avg = 0;
+        int avg;
+        int count = 0;
 
+        while(true) {
+            System.out.println("Enter number: ");
+            boolean isAnInt = scanner.hasNextInt();
+
+            if(isAnInt){
+                int number = scanner.nextInt();
+                sum += number;
+                count += 1;
+
+            } else {
+                break;
+            }
+        }
+        avg = sum / count;
 
         System.out.println("SUM = " + sum + " AVG = " + avg);
+        scanner.close();
     }
 }
