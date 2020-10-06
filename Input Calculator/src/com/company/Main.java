@@ -9,9 +9,7 @@ public class Main {
     }
 
     public static void inputThenPrintSumAndAverage() {
-
         Scanner scanner = new Scanner(System.in);
-
         int sum = 0;
         int avg;
         int count = 0;
@@ -29,9 +27,19 @@ public class Main {
                 break;
             }
         }
-        avg = sum / count;
+        scanner.close();
+        if(count == 0){
+            avg = 0;
+        } else {
+            avg = (int) (sum / count);
+
+        }
 
         System.out.println("SUM = " + sum + " AVG = " + avg);
-        scanner.close();
+
+    }
+
+    public static int getBucketCount(double width, double height, double areaPerBucket, int extraBuckets) {
+
     }
 }
